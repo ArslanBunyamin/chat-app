@@ -32,7 +32,7 @@ function Home() {
     if (!currentUser.loggedIn) {
       navigate("/", { replace: true });
     }
-  }, [currentUser.loggedIn, navigate]);
+  }, []);
 
   useEffect(() => {
     bottomRef.current.scrollIntoView({ behavior: "smooth" });
@@ -62,7 +62,7 @@ function Home() {
         }
       }
     });
-  }, [dispatch, messages, q]);
+  }, []);
 
   useEffect(() => {
     if (input !== "") {
@@ -74,7 +74,7 @@ function Home() {
       setInput("");
       inputRef.current.value = "";
     }
-  }, [input, currentUser.username, myCollection]);
+  }, [input]);
 
   return (
     <div className="App">
