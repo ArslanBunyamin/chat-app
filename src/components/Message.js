@@ -24,7 +24,7 @@ function Message(props) {
   return (
     <div className={messageFrom + " " + continous}>
       <div className="sender" style={{ color: color }}>
-        {continous == "continous" ? "" : props.sender}
+        {continous === "continous" ? "" : props.sender}
       </div>
       <div className="message">{props.text}</div>
     </div>

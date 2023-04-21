@@ -35,7 +35,7 @@ function Login() {
         navigate("/Home");
       }
     });
-  }, [currentUser]);
+  }, [currentUser, dispatch, navigate, userDb]);
 
   return (
     <div className="login-container">

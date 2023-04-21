@@ -32,7 +32,7 @@ function Home() {
     if (!currentUser.loggedIn) {
       navigate("/", { replace: true });
     }
-  }, []);
+  }, [currentUser.loggedIn, navigate]);
 
   useEffect(() => {
     bottomRef.current.scrollIntoView({ behavior: "smooth" });
@@ -42,7 +42,7 @@ function Home() {
         dispatch(setContinous({ index: i, continous: true }));
       }
     }
-  }, [messages]);
+  }, [messages, dispatch]);
 
   useEffect(() => {
     onSnapshot(q, (snapshot) => {
@@ -62,7 +62,7 @@ function Home() {
         }
       }
     });
-  }, []);
+  }, [dispatch, messages, q]);
 
   useEffect(() => {
     if (input !== "") {
@@ -74,7 +74,7 @@ function Home() {
       setInput("");
       inputRef.current.value = "";
     }
-  }, [input]);
+  }, [input, currentUser.username, myCollection]);
 
   return (
     <div className="App">
