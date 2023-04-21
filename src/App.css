@@ -204,10 +204,9 @@
   padding: 7px 10px;
   color: rgb(230, 230, 230);
   border: none;
-  background: #1d1d1d;
+  background: #222;
   cursor: pointer;
   transition: background 0.2s;
-  box-shadow: -2px 0 2px #111;
 }
 .send-button:hover {
   background: blueviolet;
