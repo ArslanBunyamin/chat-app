@@ -173,34 +173,33 @@
   position: fixed;
   bottom: 0;
   background: #1d1d1d;
+  display: flex;
+  justify-content: center;
 }
 .form {
-  position: relative;
-  width: 100vw;
+  width: 98.5%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 10px 0;
-}
-.text-input {
-  width: 98%;
-  padding: 7px;
-  outline: none;
-  border: none;
+  justify-content: space-between;
   border: 1px solid #ccc;
   border-radius: 5px;
+  overflow: hidden;
+}
+.form:focus-within {
+  background: #222;
+}
+.text-input {
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  padding: 7px;
   background: transparent;
   color: rgb(230, 230, 230);
   transition: background 0.2s;
-}
-
-.text-input:focus {
-  background: #222;
+  word-wrap: break-word;
 }
 
 .send-button {
-  position: absolute;
-  right: 1.5%;
   padding: 7px 10px;
   color: rgb(230, 230, 230);
   border: none;

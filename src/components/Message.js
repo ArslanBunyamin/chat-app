@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function Message(props) {
   const currentUser = useSelector((state) => state.login);
 
-  let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  let color = props.color;
   if (props.sender === "bunyamin") color = "gold";
 
   let continous = "non-continous";

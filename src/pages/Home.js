@@ -27,6 +27,7 @@ function Home() {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const currentUser = useSelector((state) => state.login);
+  const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
   useEffect(() => {
     if (!currentUser.loggedIn) {
@@ -96,6 +97,7 @@ function Home() {
               text={messageObject.message}
               sender={messageObject.sender}
               continous={messageObject.continous}
+              color={randomColor}
             />
           ))}
           <div ref={bottomRef} />
