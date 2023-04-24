@@ -16,7 +16,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-function Home() {
+function Home(props) {
   const ms = useSelector((state) => state.messages);
   const messages = ms.messages;
   const dispatch = useDispatch();
@@ -27,7 +27,6 @@ function Home() {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const currentUser = useSelector((state) => state.login);
-  const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
   useEffect(() => {
     if (!currentUser.loggedIn) {
@@ -91,13 +90,24 @@ function Home() {
           <FontAwesomeIcon icon={faMessage} style={{ color: "blueviolet" }} />
           &nbsp;Wowoo
         </section>
-        <section className="messages-section">
+        <section
+          className="messages-section"
+          onClick={(e) => {
+            if (inputRef.current.classList.contains("active")) {
+              inputRef.current.blur();
+            } else {
+              inputRef.current.focus();
+            }
+            inputRef.current.classList.toggle("active");
+          }}
+        >
           {messages.map((messageObject) => (
             <Message
               text={messageObject.message}
               sender={messageObject.sender}
               continous={messageObject.continous}
-              color={randomColor}
+              color={props.color}
+              key={messageObject.id}
             />
           ))}
           <div ref={bottomRef} />
@@ -117,7 +127,6 @@ function Home() {
               type="search"
               placeholder="Mesaj yaz..."
               ref={inputRef}
-              autoFocus
               spellCheck="false"
               autoComplete="off"
               onFocus={() => {
