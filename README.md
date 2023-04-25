@@ -1,3 +1,9 @@
+#### website link: a-ogullari-chat.web.app
+# For sign in you can use:
+## "username: guest1, password: 123" 
+or
+## "username: guest2, password: 123"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
