@@ -7,22 +7,20 @@ function Message(props) {
   let color = props.color;
   if (props.sender === "bunyamin") color = "gold";
 
-  let continous = "non-continous";
-  if (props.continous) {
-    continous = "continous";
-  }
-
   let messageFrom = "received";
   if (props.sender === currentUser.username) {
     messageFrom = "sent";
   }
 
   return (
-    <div className={messageFrom + " " + continous}>
+    <div className={"msg " + messageFrom}>
       <div className="sender" style={{ color: color }}>
-        {continous === "continous" ? "" : props.sender}
+        {props.continous ? "" : props.sender}
       </div>
-      <div className="message">{props.text}</div>
+      <div className="message">
+        <div>{props.text}</div>
+        <div className="date">{props.sameDate ? "" : props.date}</div>
+      </div>
     </div>
   );
 }

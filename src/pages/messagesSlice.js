@@ -14,7 +14,12 @@ export const messagesSlice = createSlice({
       const continous = cont.payload.continous;
       state.messages[index].continous = continous;
     },
+    setSameDate: (state, cont) => {
+      const index = cont.payload.index;
+      const sameDate = cont.payload.sameDate;
+      state.messages[index].sameDate = sameDate;
+    },
   },
 });
-export const { setMessages, setContinous } = messagesSlice.actions;
+export const { setMessages, setContinous, setSameDate } = messagesSlice.actions;
 export default messagesSlice.reducer;

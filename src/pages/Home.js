@@ -3,9 +3,9 @@ import Message from "../components/Message";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessages, setContinous } from "./messagesSlice";
+import { setMessages, setContinous, setSameDate } from "./messagesSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faLessThanEqual, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet";
 import {
   addDoc,
@@ -41,6 +41,9 @@ function Home(props) {
       if (messages[i].sender === messages[i - 1].sender) {
         dispatch(setContinous({ index: i, continous: true }));
       }
+      if (messages[i].date === messages[i - 1].date) {
+        dispatch(setSameDate({ index: i - 1, sameDate: true }));
+      }
     }
   }, [messages, dispatch]);
 
@@ -53,6 +56,8 @@ function Home(props) {
             id: doc.id,
             sender: doc.data().sender,
             continous: false,
+            date: doc.data().date,
+            sameDate: false,
           }))
         )
       );
@@ -60,15 +65,24 @@ function Home(props) {
         if (messages[i].sender === messages[i - 1].sender) {
           dispatch(setContinous({ index: i, continous: true }));
         }
+        if (messages[i].date === messages[i - 1].date) {
+          dispatch(setSameDate({ index: i - 1, sameDate: true }));
+        }
       }
     });
   }, []);
 
   useEffect(() => {
     if (input !== "") {
+      let date = new Date();
+      const hoursMin = date.toLocaleTimeString("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
       addDoc(myCollection, {
         message: input,
         "time-stamp": serverTimestamp(),
+        date: hoursMin,
         sender: currentUser.username,
       });
       setInput("");
@@ -90,17 +104,7 @@ function Home(props) {
           <FontAwesomeIcon icon={faMessage} style={{ color: "blueviolet" }} />
           &nbsp;Wowoo
         </section>
-        <section
-          className="messages-section"
-          onClick={(e) => {
-            if (inputRef.current.classList.contains("active")) {
-              inputRef.current.blur();
-            } else {
-              inputRef.current.focus();
-            }
-            inputRef.current.classList.toggle("active");
-          }}
-        >
+        <section className="messages-section">
           {messages.map((messageObject) => (
             <Message
               text={messageObject.message}
@@ -108,6 +112,8 @@ function Home(props) {
               continous={messageObject.continous}
               color={props.color}
               key={messageObject.id}
+              date={messageObject.date}
+              sameDate={messageObject.sameDate}
             />
           ))}
           <div ref={bottomRef} />

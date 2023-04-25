@@ -58,7 +58,7 @@
   align-items: center;
 }
 .login-input {
-  border: 1px solid transparent;
+  border: none;
   border-radius: 3px;
   outline: none;
   background: #3d3d3d;
@@ -76,8 +76,7 @@
 }
 
 .login-button {
-  padding: 7px;
-  margin: 0 10px;
+  padding: 0.6rem 0.8rem;
   background: #3d3d3d;
   color: rgb(230, 230, 230);
   box-shadow: 2px 2px 10px #1d1d1d;
@@ -131,29 +130,29 @@
   padding: 0 5px;
   word-wrap: break-word;
 }
-.messages-section .sent {
+.msg {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
-  border-right: 2px solid blueviolet;
   margin: 5px 10px 0 10px;
   padding: 0 5px;
   word-wrap: break-word;
+}
+.messages-section .sent {
+  align-items: flex-end;
+  border-right: 2px solid blueviolet;
   text-align: right;
 }
 .messages-section .received {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border-left: 2px solid blueviolet;
-  margin: 5px 10px 0 10px;
-  padding: 0 5px;
-  word-wrap: break-word;
 }
 
 .messages-section .message {
   width: 80%;
+}
+.messages-section .date {
+  font-size: 0.7rem;
+  opacity: 0.6;
 }
 
 .sending-section {
@@ -170,19 +169,15 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 50px;
   overflow: hidden;
   background: #1d1d1d;
-  margin-bottom: 2px;
-  transform: scaleY(0);
-  transform-origin: bottom;
+  margin-bottom: 4px;
   transition: all 0.3s;
-}
-.form:has(.active) {
-  transform: scaleY(1);
 }
 .form:focus-within {
   background: #222;
+  border-radius: 8px;
 }
 .text-input {
   flex-grow: 1;
