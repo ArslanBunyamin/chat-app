@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages, setContinous, setSameDate } from "./messagesSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLessThanEqual, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet";
 import {
   addDoc,
@@ -41,7 +41,10 @@ function Home(props) {
       if (messages[i].sender === messages[i - 1].sender) {
         dispatch(setContinous({ index: i, continous: true }));
       }
-      if (messages[i].date === messages[i - 1].date) {
+      if (
+        messages[i].date === messages[i - 1].date &&
+        messages[i].sender !== messages[i - 1].sender
+      ) {
         dispatch(setSameDate({ index: i - 1, sameDate: true }));
       }
     }
@@ -65,7 +68,10 @@ function Home(props) {
         if (messages[i].sender === messages[i - 1].sender) {
           dispatch(setContinous({ index: i, continous: true }));
         }
-        if (messages[i].date === messages[i - 1].date) {
+        if (
+          messages[i].date === messages[i - 1].date &&
+          messages[i].sender !== messages[i - 1].sender
+        ) {
           dispatch(setSameDate({ index: i - 1, sameDate: true }));
         }
       }
