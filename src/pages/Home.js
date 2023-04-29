@@ -43,7 +43,7 @@ function Home(props) {
       }
       if (
         messages[i].date === messages[i - 1].date &&
-        messages[i].sender !== messages[i - 1].sender
+        messages[i].sender === messages[i - 1].sender
       ) {
         dispatch(setSameDate({ index: i - 1, sameDate: true }));
       }
@@ -70,7 +70,7 @@ function Home(props) {
         }
         if (
           messages[i].date === messages[i - 1].date &&
-          messages[i].sender !== messages[i - 1].sender
+          messages[i].sender === messages[i - 1].sender
         ) {
           dispatch(setSameDate({ index: i - 1, sameDate: true }));
         }
@@ -141,6 +141,7 @@ function Home(props) {
               ref={inputRef}
               spellCheck="false"
               autoComplete="off"
+              autoFocus
               onFocus={() => {
                 bottomRef.current.scrollIntoView({ behavior: "smooth" });
               }}
